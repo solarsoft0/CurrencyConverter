@@ -1,6 +1,6 @@
 
 
-const staticCacheName = 'CC-v2';
+const staticCacheName = 'CC-v1';
 
 self.addEventListener('install', (event) => {
 
@@ -11,12 +11,11 @@ self.addEventListener('install', (event) => {
                 './',
                 './assets/js/main.js',
                 './assets/js/idb.js',
-                './assets/js/idbController.js',
                 './assets/js/serviceWorker.js',
                 './assets/css/main.css',
-                
                 'https://free.currencyconverterapi.com/api/v5/currencies',
-            ]);
+
+                ]);
         })
     )
 });
@@ -35,6 +34,7 @@ self.addEventListener('fetch', (event) => {
 self.addEventListener('activate', function (event) {
     event.waitUntil(
         caches.keys().then(function (cacheNames) {
+            showMessage("deleting old cache");
             return Promise.all(
                 cacheNames.filter(function (cacheName) {
                     return cacheName.startsWith('CC-') &&
@@ -45,4 +45,8 @@ self.addEventListener('activate', function (event) {
             );
         })
     );
+});
+
+self.addEventListener('message', messageEvent => {
+    if (messageEvent.data === 'skipWaiting') return skipWaiting();
 });

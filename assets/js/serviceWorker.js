@@ -1,27 +1,34 @@
 
-
+function showMessage(msg) {
+    const message = document.querySelector('#message')
+    message.textContent = msg;
+}
 
 const registerServiceWorker = () => {
-    if (!navigator.serviceWorker) return;
+    if (!navigator.serviceWorker) {
+        showMessage("service Worker Not Supported");
+        return
+    }
 
 
-    navigator.serviceWorker.register('./sw.js').then(function (reg) {
+    navigator.serviceWorker.register('./sw.js').then(function (registration) {
         if (!navigator.serviceWorker.controller) {
             return;
         }
+        showMessage("Registering Service Worker");
 
-        if (reg.waiting) {
-            updateReady(reg.waiting);
+        if (registration.waiting) {
+            updateReady(registration.waiting);
             return;
         }
 
-        if (reg.installing) {
-            trackInstalling(reg.installing);
+        if (registration.installing) {
+            trackInstalling(registration.installing);
             return;
         }
 
-        reg.addEventListener('updatefound', function () {
-            trackInstalling(reg.installing);
+        registration.addEventListener('updatefound', function () {
+            trackInstalling(registration.installing);
         });
     });
 
@@ -37,18 +44,23 @@ const registerServiceWorker = () => {
 
 const trackInstalling = worker => {
 
-    console.log("inside trACKINSTALLING");
-
+    showMessage("installing Service Worker");
     worker.addEventListener('statechange', function () {
         if (worker.state == 'installed') {
+            showMessage("Service Worker Installed");
             updateReady(worker);
         }
     });
 };
 
 const updateReady = worker => {
+    showMessage("SERVICE WORKER UPDATE READY");
+let value = confirm("New Update is Available, Do You Want to Update")
+if (value) {
+       worker.postMessage('skipWaiting');
+    showMessage("UPDATING");
 
-    console.log("UPDATE READY");
+   }
 
 };
 
