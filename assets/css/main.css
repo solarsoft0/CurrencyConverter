@@ -1,0 +1,124 @@
+*{
+margin:0;
+padding:0;
+box-sizing: border-box;
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body {
+    font-size: 16px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin:10px;
+    background-color: white;
+    box-shadow: 1px 2px 20px rgba(0,0,0,0.2);
+    height: 100%;
+
+
+}
+
+header {
+    width: 100%;
+    align-content: center;
+    text-align: center;
+    padding:25px;
+    font-size: 2em;
+        background-color:rgb(5,51,86);
+color:white;
+    font-weight:600;
+}
+
+
+.inner-container {
+    flex-grow: 1;
+    padding:25px;
+
+}
+.from-to_container{
+    display: flex;
+    flex-direction: column;
+}
+
+#from {
+font-size: 1.2em;
+font-weight: 400;
+color: rgb(175, 175, 175)
+}
+
+#to {
+font-size: 1.5em;
+font-weight: 600;
+color:rgb(5,51,86);
+}
+
+.form_control {
+    display: flex;
+    flex-direction: column;
+    margin-top:15px;
+    margin-bottom:15px;
+    
+}
+.form_control label {
+padding-bottom:10px
+}
+
+.form_control input{
+    border:none;
+    box-shadow: 1px 1px 8px rgba(0,0,0,0.2);
+    height: 40px;
+    color: rgb(175, 175, 175);
+    font-size: 1.2em;
+    padding:10px;
+       overflow: hidden;
+       margin-bottom: 10px;
+
+}
+
+
+
+.form_control select {
+    border:none;
+    box-shadow: 1px 1px 8px rgba(0,0,0,0.2);
+    height: 40px;
+    color: rgb(175, 175, 175);
+    background-color:white;
+    font-size: 1.2em;
+    padding:5px;
+       overflow: hidden;
+
+}
+
+.form-wrapper {
+    display: flex;
+flex-direction: column;
+}
+.copyright {
+text-align: center;
+padding: 10px;
+}
+
+
+@media (min-width: 768px)
+ {
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-content: center
+    }
+.form-wrapper {
+flex-direction: row;
+}
+
+.form-wrapper .form_control{
+    margin-right: 40px
+}
+
+.container{
+    margin: 0 aut
+}
+}
